@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cocoa: #1C120C;
+  --color-roast: #2E1D14;
+  --color-kraft: #C79A62;
+  --color-amber: #E07A1F;
+  --color-amber-deep: #B85A0C;
+  --color-cream: #F6EEE2;
+  --color-ink: #2A1A11;
+  --font-display: "Alexandria", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; background: #1C120C; }
+body { margin: 0; }
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+/* warm bokeh glow, from the brand's night shots */
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 20% 30%, rgba(224,122,31,0.22), transparent 70%),
+    radial-gradient(30% 30% at 85% 75%, rgba(199,154,98,0.16), transparent 70%),
+    radial-gradient(60% 50% at 50% 110%, rgba(224,122,31,0.18), transparent 70%);
+}
+
+/* chips drifting like warm dust */
+.drift { animation: drift 10s ease-in-out infinite; opacity: 0.85; filter: drop-shadow(0 8px 14px rgba(0,0,0,0.45)); }
+@keyframes drift {
+  0%, 100% { transform: translate3d(0,0,0) rotate(-8deg); }
+  50% { transform: translate3d(-10px,-18px,0) rotate(10deg); }
+}
+@media (prefers-reduced-motion: reduce) { .drift { animation: none; } }
+
+/* pouch-window frame with hang hole */
+.pouch { position: relative; overflow: hidden; border-radius: 32px 32px 26px 26px; }
+.pouch-hole {
+  position: absolute; z-index: 2; top: 14px; left: 50%; width: 16px; height: 16px;
+  transform: translateX(-50%); border-radius: 999px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.35);
+}
+
+.flavor-card { min-height: 330px; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.6); }
+
+.snap-row { scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: -1.25rem; padding-inline: 1.25rem; }
+.snap-row::-webkit-scrollbar { display: none; }
+@media (min-width: 1024px) { .snap-row { margin-inline: 0; padding-inline: 0; } }
+
+.cap {
+  position: absolute; bottom: 12px; right: 12px; border-radius: 999px;
+  background: rgba(246,238,226,0.92); color: #2A1A11; padding: 6px 14px; font-size: 14px; font-weight: 700;
+}
+
+/* the box */
+.box-kraft { background: linear-gradient(160deg, #D2A672, #B98A55); box-shadow: inset 0 0 0 3px rgba(74,46,24,0.18), 0 20px 40px -20px rgba(0,0,0,0.7); }
+.box-white { background: linear-gradient(160deg, #F7F4EE, #E3DDD3); box-shadow: inset 0 0 0 3px rgba(90,70,54,0.12), 0 20px 40px -20px rgba(0,0,0,0.7); }
+.slot { background: rgba(60,36,18,0.16); box-shadow: inset 0 2px 5px rgba(40,22,10,0.25); }
+.box-white .slot { background: rgba(90,70,54,0.09); }
+
+.mini-pouch {
+  border-radius: 7px 7px 6px 6px; overflow: hidden; cursor: pointer;
+  background: linear-gradient(170deg, #D9B07C, #B98650);
+  box-shadow: 0 3px 6px rgba(40,22,10,0.35), inset 0 0 0 1px rgba(255,255,255,0.15);
+  display: flex; flex-direction: column; align-items: stretch; padding: 14% 9% 9%;
+}
+.mini-pouch::before {
+  content: ""; position: absolute; top: 5%; left: 50%; width: 5px; height: 5px; transform: translateX(-50%);
+  border-radius: 99px; background: rgba(40,22,10,0.45);
+}
+.mini-window {
+  flex: 1; border-radius: 4px;
+  background: repeating-linear-gradient(115deg, #C4651C 0 6px, #E39448 6px 10px, #9E4A12 10px 14px);
+  opacity: 0.92;
+}
+.mini-label {
+  margin-top: 8%; border-radius: 3px; font-size: 9px; line-height: 1.5; font-weight: 700; text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+}
+@media (min-width: 640px) { .mini-label { font-size: 11px; } }
+
+.err { margin-top: 6px; font-size: 14px; color: #F08A75; font-weight: 600; }
+
+select option { background: #F6EEE2; }
